@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant</title>
+    <style>
+        *{
+            background-color: black;
+        }
+        .nav{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding-left: 50px;
+            padding-right: 60px;
+            border-radius: 10px;
+            align-items: baseline;
+            box-shadow: 2px 1px 5px 1px #FFF8DC;
+            margin: 15px;
+            font-family: 'Playfair Display', Georgia, serif;
+            
+        }
+        .h1{
+            font-weight: bold;
+            font-size: 25px;
+            color: #d6794d;
+            padding-left:50px;
+        }
+        .nav a{
+            text-decoration: none;
+            color: #FFF8DC	;
+            font-size: 19px;
+            font-family: 'Tahoma', sans-serif;
+        }
+        .nav a:hover{
+            color: #d6794d	;
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+        .splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: black;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            animation: fadeOutSplash 0.8s ease 3.8s forwards; 
+            pointer-events: none;
+        }
+
+        .hero-typing-container {
+            text-align: center;
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+
+        .typing-title {
+            font-size: 75px;
+            font-weight: bold;
+            color: #d6794d;
+            margin: 0 auto 15px auto;
+            display: inline-block;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 0;
+            letter-spacing: 5px;
+            /* Exactly 6 steps for 6 letters: H-e-a-r-t-h */
+            animation: typing 2.5s steps(6, end) forwards, step-end infinite;
+        }
+
+        .hero-subtitle {
+            font-size: 22px;
+            color: #FFF8DC;
+            margin-top: 10px;
+            opacity: 0;
+            transform: translateY(20px);
+            /* Triggers right after typing finishes at 2.1s */
+            animation: fadeInUp 1s ease-out 2.1s forwards;
+            font-family: 'Tahoma', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 300px; } 
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeOutSplash {
+            to {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+        .h2{
+            color: #FFF8DC;
+            padding:20px;
+            padding-bottom:5px;
+            font-size: 35px;
+            font-family: 'Tahoma', sans-serif;
+            font-weight: bold;
+            text-align: center;
+        }
+        .message{
+            color: #ccb499;
+            padding:20px;
+            padding-top: 0px;
+            font-size: 25px;
+            font-family: 'Garamond', serif;
+            text-align: center;
+        }
+        .resim{
+            display:flex;
+            justify-content: center;
+        }
+        .know_more {
+            margin-bottom: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .know_more p{
+            color:#FFF8DC;
+            font-size:45px;
+            font-family: 'Garamond', serif;
+            font-style: italic;
+            margin-top: 70px;
+            margin-left:20px;
+            margin-bottom:70px;
+            text-align: center;
+        }
+        .know_more a {
+            display: inline-block;
+            color: #4a413c;
+            background-color: #ccb499;
+            text-decoration: none;
+            padding: 20px;
+            border-radius: 20px;
+            font-size: 20px;
+            font-family: 'Tahoma', sans-serif;
+            margin: 0;
+        }
+        .bs{
+            margin:20px;
+            display: flex;
+        }
+        .bst{
+            font-family: 'Tahoma', sans-serif;
+            color:#c8906d;
+            font-weight: bold;
+            font-size: 50px;
+            margin:20px;
+            text-align: center;
+            padding-bottom:20px;
+        }
+        .bsd1,.bsd2,.bsd3{
+            color:#bb6c43;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-style: italic;
+            font-size:25px;
+            padding-bottom: 10px;
+            font-weight: 500;
+        }
+        .bs1,.bs2,.bs3{
+            border: 1px solid #d9a56b33;
+            margin-top:20px;
+            width:400px;
+            height:350px;
+            padding:20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 1px 2px 15px #d9a56b33;
+        }
+        .bs1{
+            margin-left:60px;
+        }
+        .bs2{
+            margin-left:150px;
+        }
+        .bs3{
+            margin-left:150px;
+        }
+        .bd{
+            border-top: 1px solid rgba(217, 165, 107, 0.2);
+            border-bottom: 1px solid rgba(217, 165, 107, 0.2);
+            padding:50px;
+        }
+        .rwt {
+            font-family: 'Playfair Display', Georgia, serif;
+            color: #bb6c43;
+            font-weight: bold;
+            font-size: 40px;
+            text-align: center;
+            margin-top: 60px;
+            margin-bottom: 30px;
+        }
+
+        .rw {
+            display: flex;
+            flex-direction: row;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin: 20px auto;
+            max-width: 1300px;
+        }
+
+        .review-card {
+            background-color: #121212;
+            margin-left: 30px;
+            width: 300px;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 1px 2px 12px rgba(255, 248, 220, 0.1);
+            color: #f8ecdd;
+            font-family: 'Garamond', serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+        }
+
+        /* Pop-out hover effect */
+        .review-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 10px 25px rgba(255, 154, 0, 0.3);
+            background-color: #1a1a1a;
+        }
+
+        .review-stars {
+            color: #c8906d;
+            font-size: 20px;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+        }
+
+        .review-text {
+            font-size: 19px;
+            line-height: 1.5;
+            font-style: italic;
+            margin-bottom: 25px;
+            color: #b3a08a;
+        }
+
+        .review-footer {
+            border-top: 1px solid rgba(217, 165, 107, 0.2);
+            padding-top: 15px;
+            margin-top: auto;
+        }
+
+        .review-name {
+            color: #c8906d;
+            font-family: 'Tahoma', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0 0 5px 0;
+        }
+
+        .review-date {
+            color: #ccb499;
+            font-family: 'Lato', sans-serif;
+            font-size: 13px;
+            margin: 0;
+        }
+        .glide-up {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+            will-change: opacity, transform;
+        }
+
+        .glide-up.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.3s; }
+        .delay-3 { transition-delay: 0.5s; }
+        @media (max-width: 900px) {
+		.nav {
+			padding: 15px 25px;
+			margin: 10px;
+		}
+
+		.contact-container,
+		.story-container {
+			flex-direction: column;
+			align-items: center;
+		}
+        .know_more {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 100px;
+            padding: 0 20px;
+        }
+
+        .know_more p {
+            font-size: 30px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .know_more a {
+            display: inline-block;
+            margin: 0 auto;
+            padding: 15px 25px;
+            font-size: 18px;
+        }
+		.story-image-box,
+		.story-card,
+		.contact-card,
+		.contact-form-card {
+			width: 100%;
+			max-width: 100%;
+		}
+
+		footer {
+			flex-direction: column;
+			margin: 5px;
+			padding: 20px;
+		}
+
+		.f1, .f2, .f3, .f4 {
+			margin: 10px 0 !important;
+			width: 100% !important;
+			padding: 10px !important;
+			box-shadow: none !important;
+		}
+
+		.f1 {
+			margin-bottom: 20px !important;
+		}
+	}
+
+	@media (max-width: 600px) {
+		.nav {
+			flex-direction: column;
+			gap: 15px;
+			align-items: center;
+			padding: 15px;
+		}
+
+		.nav a {
+			font-size: 17px;
+		}
+
+		.contact-header h1,
+		.hero-title {
+			font-size: 32px !important;
+		}
+        .know_more {
+        padding: 0 15px;
+        margin-bottom: 100px;
+    }
+
+    .know_more p {
+        font-size: 24px;
+        margin: 30px 0;
+        text-align: center;
+    }
+
+    .know_more a {
+        padding: 12px 24px;
+        font-size: 16px;
+        margin: 0;
+        align-self: center;
+    }
+		.contact-header p,
+		.hero-subtitle {
+			font-size: 16px !important;
+		}
+
+		.pre-footer-banner-container {
+			height: 200px;
+		}
+
+		.pre-footer-overlay h2 {
+			font-size: 22px !important;
+		}
+
+		.pre-footer-overlay p {
+			font-size: 14px !important;
+		}
+
+		.values-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+        footer{
+            display:flex;
+            flex-direction: row;
+            color: #b3a08a;
+            border-radius: 10px;
+            margin:10px;
+            margin-top: 100px;
+            box-shadow: 2px 1px 5px 1px #b3a08a;
+            font-family:'Georgia', serif;
+        }
+        .f3 a{
+            text-decoration: none;
+            color: #b3a08a;
+        }
+        .f1{
+            margin-left:10px;
+            padding: 10px;
+            padding-top: 30px;
+            margin-bottom:200px;
+        }
+        .f2{
+            margin-left:100px;
+            box-shadow: 0px 1px 5px 1px #b3a08a;
+            padding: 10px;
+            width:500px;
+        }
+        .f3{
+            box-shadow: 0px 1px 5px 1px #b3a08a;
+            padding: 10px;
+            width:400px;
+            padding-left: 30px;
+        }
+        .f4{
+            box-shadow: 0px 1px 5px 1px #b3a08a;
+            width:370px;
+            padding-top:30px;
+            padding-left: 30px;
+        }
+        .f4 a{
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 40px;
+            color: #d6794d;
+        }
+    </style>
+</head>
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15 // Triggers when 15% of the element is visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        //Stop observing once it has glided in
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.glide-up').forEach(element => {
+                observer.observe(element);
+            });
+        });
+</script>
+<body>
+    <div class="splash-screen">
+        <div class="hero-typing-container">
+            <h1 class="typing-title">Hearth</h1>
+            <p class="hero-subtitle">Where Casual Dining Meets Authentic Flavor <br><br> Indiranagar, Bengaluru</p>
+        </div>
+    </div>
+    <navbar class="nav">
+        <p class="h1">Hearth</p>
+        <a href="res.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="menu.html">Menu</a>
+        <a href="contact.html">Contact Us</a>
+    </navbar>
+    <br>
+    <div class="heromes glide-up">
+        <p class="h2">Experience the taste of the world!</p>
+        <p class="message">From classic favorites to exotic delights, explore a diverse menu inspired by cuisines from across the globe.</p>
+    </div>
+
+    <div class="resim glide-up">
+        <img src="./res1.webp" alt="Restaurant" width="1200" height="700">
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="bd glide-up">
+        <p class="bst">Best Delivered</p>
+        <div class="bs">
+            <div class="bs1 glide-up delay-1">
+                <img src="./bs1.jpg" alt="bestseller" width="350px" height="300px" class="bi1">
+                <p class="bsd1">Margherita Pizza</p>
+            </div>
+            <div class="bs2 glide-up delay-2">
+                <img src="./bs2.jpg" alt="bestseller" width="350px" height="300px" class="bi2">
+                <p class="bsd2">Creamy Alfredo Pasta</p>
+            </div>    
+            <div class="bs3 glide-up delay-3">
+                <img src="./bs3.jpg" alt="bestseller" width="350px" height="300px" class="bi3">
+                <p class="bsd3">Classic Veg Burger</p>
+            </div> 
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="know_more glide-up">
+        <p>Blending tradition and innovation to create unforgettable dining experiences</p>
+        <a href="./about.html">Read Our Story</a>
+    </div>
+
+    <p class="rwt glide-up">Voices of Hearth</p>
+    <div class="rw glide-up">
+        <div class="review-card">
+            <div>
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"Hearth is such a lovely place to dine! The Margherita pizza was fresh and delicious, and the atmosphere was warm and welcoming. Definitely coming back!"</p>
+            </div>
+            <div class="review-footer">
+                <p class="review-name">Priya Sharma</p>
+                <p class="review-date">2 weeks ago</p>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <div>
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"I absolutely loved the creamy Alfredo pasta! The service was excellent, and every dish was beautifully presented. Highly recommend Hearth to anyone who loves good food!"</p>
+            </div>
+            <div class="review-footer">
+                <p class="review-name">Rahul Mehta</p>
+                <p class="review-date">1 month ago</p>
+            </div>
+        </div>    
+
+        <div class="review-card">
+            <div>
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"One of the best dining experiences I've had! The veg burger was crispy, flavourful, and perfectly prepared. Great food, friendly staff, and a beautiful ambience!"</p>
+            </div>
+            <div class="review-footer">
+                <p class="review-name">Ananya Rao</p>
+                <p class="review-date">3 weeks ago</p>
+            </div>
+        </div> 
+    </div>
+    <footer>
+        <div class="f1">
+            <a href="res.html" src="Hearth" id="h3"></a>
+            <p>Loved your meal? Leave us a review and tag us in your food photos!</p>
+            <p>An exceptional dining experience is our passion. Thank you for choosing us tonight.</p>
+        </div>
+        <div class="f2">
+            <p style="font-weight: bold;font-size: 20px; text-decoration: underline;">Support</p>
+            <p class="con">Contact us: 123-456-7890</p>
+            <p class="em">Email: info@hearthrestaurant.com</p>
+            <p class="add">Hearth Restaurant<br>24 Maplewood Avenue,  <br>Indiranagar, Bengaluru, Karnataka – 560038, India.</p>
+        </div>
+        <div class="f3">
+            <p style="font-weight: bold;font-size: 20px;text-decoration: underline;">Helpful Links</p>
+            <a href="res.html">Home</a>
+            <br>
+            <br>
+            <a href="about.html">About Us</a>
+            <br>
+            <br>
+            <a href="menu.html">Menu</a>
+            <br>
+            <br>
+            <a href="contact.html">Contact Us</a>
+        </div>
+        <div class="f4">
+            <a href="res.html">Hearth</a>
+            <br>
+            <p>Where casual dining meets authentic flavor.</p>
+        </div>
+    </footer>
+</body>
+</html>

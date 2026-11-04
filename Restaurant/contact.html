@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Hearth</title>
+    <style>
+        * {
+            background-color: black;
+            color: #EBEFEE;
+            box-sizing: border-box;
+            font-family: 'Playfair Display', Georgia, serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .nav {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 15px 60px 15px 50px;
+            border-radius: 10px;
+            align-items: baseline;
+            background-color: black;
+            box-shadow: 2px 1px 5px 1px #CCB499;
+            margin: 15px;
+        }
+
+        .h1 {
+            font-weight: bold;
+            font-size: 25px;
+            color: #C8906D;
+            background-color: transparent;
+            font-family: 'Tahoma', sans-serif;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: #EBEFEE;
+            background-color: transparent;
+            font-size: 19px;
+            font-family: 'Lato', sans-serif;
+            transition: color 0.3s ease;
+        }
+
+        .nav a:hover {
+            color: #C8906D;
+        }
+
+        .contact-header {
+            text-align: center;
+            padding: 50px 20px 20px;
+        }
+
+        .contact-header h1 {
+            color: #BB6C43;
+            font-size: 45px;
+            font-weight: bold;
+            font-family: 'Tahoma', sans-serif;
+            margin-bottom: 10px;
+        }
+
+        .contact-header p {
+            color: #CCB499;
+            font-size: 18px;
+            font-style: italic;
+            font-family: 'Garamond', serif;
+        }
+
+        .contact-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-card, .contact-form-card {
+            flex: 1;
+            min-width: 320px;
+            background-color: black;
+            border: 1px solid #CCB499;
+            border-radius: 15px;
+            padding: 35px;
+            box-shadow: 0px 4px 15px rgba(255, 248, 220, 0.08);
+        }
+
+        .contact-card h2, .contact-form-card h2 {
+            color: #bb6c43;
+            font-size: 28px;
+            font-family: 'Tahoma', sans-serif;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #3E3531;
+            padding-bottom: 10px;
+        }
+
+        .info-item {
+            margin-bottom: 25px;
+            background-color: transparent;
+        }
+
+        .info-item h3 {
+            color: #c8906d;
+            font-size: 20px;
+            font-family: 'Verdana', sans-serif;
+            margin-bottom: 8px;
+            background-color: transparent;
+        }
+
+        .info-item p, .info-item a {
+            color: #CCB499;
+            font-size: 16px;
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            background-color: transparent;
+        }
+
+        .action-link {
+            text-decoration: none;
+            color: #CCB499;
+            transition: color 0.3s ease;
+            display: inline-block;
+        }
+
+        .action-link:hover {
+            color: #C8906D;
+            text-decoration: underline;
+        }
+
+        .hours-list {
+            margin-top: 5px;
+            background-color: transparent;
+        }
+
+        .hours-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 0px;
+            background-color: transparent;
+        }
+
+        .hours-row span {
+            color: #CCB499;
+            background-color: transparent;
+            font-family: 'Lato', sans-serif;
+            font-size: 16px;
+        }
+
+        .hours-row.today-highlight span {
+            color: #C8906D;
+            font-weight: bold;
+            background-color: transparent;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            background-color: transparent;
+        }
+
+        .form-group label {
+            display: block;
+            color: #CCB499;
+            font-size: 16px;
+            font-family: 'Lato', sans-serif;
+            margin-bottom: 8px;
+            background-color: transparent;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            background-color: black;
+            border: 1px solid #CCB499;
+            border-radius: 8px;
+            color: #EBEFEE;
+            font-size: 15px;
+            font-family: 'Lato', sans-serif;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: #C8906D;
+            box-shadow: 0 0 5px rgba(200, 144, 109, 0.5);
+        }
+
+        .submit-btn {
+            background-color: #C8906D;
+            color: black;
+            font-size: 18px;
+            font-weight: bold;
+            font-family: 'Tahoma', sans-serif;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background-color: #BB6C43;
+            color: #EBEFEE;
+        }
+
+        .pre-footer-banner {
+            max-width: 1100px;
+            margin: 60px auto 20px auto;
+            padding: 0 20px;
+        }
+
+        .pre-footer-banner-container {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid #C8906D;
+            box-shadow: 0px 8px 25px rgba(200, 144, 109, 0.25);
+        }
+
+        .pre-footer-banner-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.6);
+        }
+
+        .pre-footer-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            background-color: transparent;
+        }
+
+        .pre-footer-overlay h2 {
+            color: #EBEFEE;
+            font-size: 32px;
+            font-family: 'Tahoma', sans-serif;
+            margin-bottom: 10px;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 8px 16px;
+            border-radius: 6px;
+        }
+
+        .pre-footer-overlay p {
+            color: #CCB499;
+            font-size: 18px;
+            font-style: italic;
+            font-family: 'Garamond', serif;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 8px 16px;
+            border-radius: 6px;
+            margin-top: 10px;
+        }
+        @media (max-width: 900px) {
+		.nav {
+			padding: 15px 25px;
+			margin: 10px;
+		}
+
+		.contact-container,
+		.story-container {
+			flex-direction: column;
+			align-items: center;
+		}
+
+		.story-image-box,
+		.story-card,
+		.contact-card,
+		.contact-form-card {
+			width: 100%;
+			max-width: 100%;
+		}
+
+		footer {
+			flex-direction: column;
+			margin: 5px;
+			padding: 20px;
+		}
+
+		.f1, .f2, .f3, .f4 {
+			margin: 10px 0 !important;
+			width: 100% !important;
+			padding: 10px !important;
+			box-shadow: none !important;
+		}
+
+		.f1 {
+			margin-bottom: 20px !important;
+		}
+	}
+
+	@media (max-width: 600px) {
+		.nav {
+			flex-direction: column;
+			gap: 15px;
+			align-items: center;
+			padding: 15px;
+		}
+
+		.nav a {
+			font-size: 17px;
+		}
+
+		.contact-header h1,
+		.hero-title {
+			font-size: 32px !important;
+		}
+
+		.contact-header p,
+		.hero-subtitle {
+			font-size: 16px !important;
+		}
+
+		.pre-footer-banner-container {
+			height: 200px;
+		}
+
+		.pre-footer-overlay h2 {
+			font-size: 22px !important;
+		}
+
+		.pre-footer-overlay p {
+			font-size: 14px !important;
+		}
+
+		.values-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+        footer{
+            display:flex;
+            flex-direction: row;
+            color: #b3a08a;
+            border-radius: 10px;
+            margin:10px;
+            margin-top: 100px;
+            box-shadow: 2px 1px 5px 1px #b3a08a;
+            font-family:'Georgia', serif;
+        }
+        footer p{
+            color: #b3a08a;
+        }
+        .f3 a{
+            text-decoration: none;
+            color: #b3a08a;
+        }
+        .f1{
+            margin-left:10px;
+            padding: 10px;
+            padding-top: 30px;
+            margin-bottom:200px;
+        }
+        .f2{
+            margin-left:100px;
+            box-shadow: 0px 1px 5px 1px #b3a08a;
+            padding: 10px;
+            width:500px;
+        }
+        .f3{
+            box-shadow: 0px 1px 5px 1px #b3a08a;
+            padding: 10px;
+            width:400px;
+            padding-left: 30px;
+        }
+        .f4{
+            box-shadow: 0px 1px 5px 1px #b3a08a;
+            width:370px;
+            padding-top:30px;
+            padding-left: 30px;
+        }
+        .f4 a{
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 40px;
+            color: #d6794d;
+        }
+    </style>
+</head>
+<body>
+
+    <navbar class="nav reveal">
+        <p class="h1">Hearth</p>
+        <a href="res.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="menu.html">Menu</a>
+        <a href="contact.html">Contact Us</a>
+    </navbar>
+
+    <div class="contact-header reveal">
+        <h1>Contact Us</h1>
+        <p>We’d love to hear from you. Get in touch with us for reservations, inquiries, or feedback.</p>
+    </div>
+
+    <div class="contact-container">
+
+        <div class="contact-card reveal">
+            <h2>Get In Touch</h2>
+
+            <div class="info-item">
+                <h3>Our Location</h3>
+                <p>Hearth Restaurant<br>24 Maplewood Avenue,<br>Indiranagar, Bengaluru, Karnataka – 560038, India.</p>
+            </div>
+
+            <div class="info-item">
+                <h3>Phone</h3>
+                <p>
+                    <a href="https://wa.me/911234567890?text=Hello%20Hearth%20Restaurant" target="_blank" class="action-link">
+                        +91 123-456-7890
+                    </a>
+                </p>
+            </div>
+
+            <div class="info-item">
+                <h3>Email</h3>
+                <p>
+                    <a href="mailto:info@hearthrestaurant.com?subject=Inquiry%20for%20Hearth%20Restaurant" class="action-link">
+                        info@hearthrestaurant.com
+                    </a>
+                </p>
+            </div>
+
+            <div class="info-item">
+                <h3>Opening Hours</h3>
+                <div class="hours-list">
+                    <div class="hours-row" id="day-1">
+                        <span>Monday</span>
+                        <span>12:00 PM – 1:00 AM</span>
+                    </div>
+                    <div class="hours-row" id="day-2">
+                        <span>Tuesday</span>
+                        <span>12:00 PM – 1:00 AM</span>
+                    </div>
+                    <div class="hours-row" id="day-3">
+                        <span>Wednesday</span>
+                        <span>12:00 PM – 1:00 AM</span>
+                    </div>
+                    <div class="hours-row" id="day-4">
+                        <span>Thursday</span>
+                        <span>12:00 PM – 1:00 AM</span>
+                    </div>
+                    <div class="hours-row" id="day-5">
+                        <span>Friday</span>
+                        <span>12:00 PM – 1:00 AM</span>
+                    </div>
+                    <div class="hours-row" id="day-6">
+                        <span>Saturday</span>
+                        <span>12:00 PM – 1:00 AM</span>
+                    </div>
+                    <div class="hours-row" id="day-0">
+                        <span>Sunday</span>
+                        <span>12:00 PM – 1:00 AM</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-form-card reveal">
+            <h2>Send Us a Message</h2>
+            <form id="contactForm" onsubmit="sendToWhatsApp(event)">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Your Email</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" placeholder="How can we help you?" required></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+
+    </div>
+
+    <div class="pre-footer-banner reveal">
+        <div class="pre-footer-banner-container">
+            <img src="./we.avif" alt="Hearth Dining Experience">
+            <div class="pre-footer-overlay">
+                <h2>We Look Forward to Welcoming You</h2>
+                <p>Experience warmth, hospitality, and authentic flavor at Hearth.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="reveal">
+        <div class="f1">
+            <a href="res.html" src="Hearth" id="h3"></a>
+            <p>Loved your meal? Leave us a review and tag us in your food photos!</p>
+            <br>
+            <p>An exceptional dining experience is our passion. Thank you for choosing us tonight.</p>
+        </div>
+        <div class="f2">
+            <p style="font-weight: bold;font-size: 20px; text-decoration: underline;">Support</p>
+            <br>
+            <p class="con">Contact us: 123-456-7890</p><br>
+            <p class="em">Email: info@hearthrestaurant.com</p><br>
+            <p class="add">Hearth Restaurant<br>24 Maplewood Avenue,  <br>Indiranagar, Bengaluru, Karnataka – 560038, India.</p>
+        </div>
+        <div class="f3">
+            <p style="font-weight: bold;font-size: 20px;text-decoration: underline;">Helpful Links</p>
+            <br>
+            <a href="res.html">Home</a>
+            <br>
+            <br>
+            <a href="about.html">About Us</a>
+            <br>
+            <br>
+            <a href="menu.html">Menu</a>
+            <br>
+            <br>
+            <a href="contact.html">Contact Us</a>
+        </div>
+        <div class="f4">
+            <a href="res.html">Hearth</a>
+            <br>
+            <p>Where casual dining meets authentic flavor.</p>
+        </div>
+    </footer>
+
+    <script>
+        const todayDayIndex = new Date().getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+        const todayRow = document.getElementById("day-" + todayDayIndex);
+        if (todayRow) {
+            todayRow.classList.add("today-highlight");
+        }
+
+        function sendToWhatsApp(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const message = document.getElementById('message').value;
+
+            const whatsappMessage = `Hello Hearth Restaurant,%0A%0A*New Inquiry from Website:*%0A- Name: ${name}%0A- Email: ${email}%0A- Phone: ${phone}%0A- Message: ${message}`;
+            
+            window.open(`https://wa.me/911234567890?text=${whatsappMessage}`, '_blank');
+        }
+
+        // Scroll Reveal Observer Effect
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); // Animate only once when scrolled into view
+                }
+            });
+        }, {
+            threshold: 0.15 // Triggers when 15% of the element is visible
+        });
+
+        document.querySelectorAll('.reveal').forEach(element => {
+            observer.observe(element);
+        });
+    </script>
+
+</body>
+</html>

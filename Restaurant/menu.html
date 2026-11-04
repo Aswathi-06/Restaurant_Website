@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Hearth</title>
+    <style>
+        * {
+            background-color: black;
+            color: #EBEFEE;
+            box-sizing: border-box;
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+
+        .nav {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding-left: 50px;
+            padding-right: 60px;
+            border-radius: 10px;
+            align-items: baseline;
+            background-color: black;
+            box-shadow: 2px 1px 5px 1px #CCB499;
+            margin: 15px;
+        }
+        .h1 {
+            font-weight: bold;
+            font-size: 25px;
+            color: #C8906D;
+            background-color: transparent;
+            padding-left: 50px;
+            font-family: 'Tahoma', sans-serif;
+        }
+        .nav a {
+            text-decoration: none;
+            color: #EBEFEE;
+            background-color: transparent;
+            font-size: 19px;
+            font-family: 'Lato', sans-serif;
+            transition: color 0.3s ease;
+        }
+        .nav a:hover {
+            color: #C8906D;
+        }
+
+        .category-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 30px auto;
+            max-width: 900px;
+            background-color: black;
+        }
+
+        .category-box {
+            background-color: black;
+            color: #EBEFEE;
+            border: 2px solid #C8906D;
+            border-radius: 12px;
+            padding: 15px 30px;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.05);
+            text-align: center;
+            min-width: 160px;
+        }
+
+        .category-box:hover, .category-box.active {
+            background-color: #C8906D;
+            color: black;
+            transform: translateY(-3px);
+            box-shadow: 0px 6px 15px rgba(200, 144, 109, 0.4);
+        }
+
+        .category-content {
+            display: none;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: black;
+        }
+
+        .category-content.active-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+        }
+
+        .dish-card {
+            background-color: black;
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid #CCB499;
+            box-shadow: 0px 4px 12px rgba(255, 248, 220, 0.1);
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .dish-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 8px 20px rgba(200, 144, 109, 0.3);
+        }
+
+        .dish-card img {
+            width: 120px;
+            height: 120px;
+            border-radius: 12px;
+            object-fit: cover;
+            border: 2px solid #C8906D;
+            background-color: black;
+        }
+
+        .dish-details {
+            background-color: transparent;
+            flex: 1;
+        }
+
+        .dish-details * {
+            background-color: transparent;
+        }
+
+        .dish-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .dish-title {
+            color: #EBEFEE;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .dish-price {
+            color: #C8906D;
+            font-size: 20px;
+            font-weight: bold;
+            font-family: 'Tahoma', sans-serif;
+        }
+
+        .dish-desc {
+            color: #CCB499;
+            font-size: 15px;
+            line-height: 1.4;
+            font-family: 'Lato', sans-serif;
+        }
+        @media (max-width: 900px) {
+		.nav {
+			padding: 15px 25px;
+			margin: 10px;
+		}
+
+		.contact-container,
+		.story-container {
+			flex-direction: column;
+			align-items: center;
+		}
+
+		.story-image-box,
+		.story-card,
+		.contact-card,
+		.contact-form-card {
+			width: 100%;
+			max-width: 100%;
+		}
+
+		footer {
+			flex-direction: column;
+			margin: 5px;
+			padding: 20px;
+		}
+
+		.f1, .f2, .f3, .f4 {
+			margin: 10px 0 !important;
+			width: 100% !important;
+			padding: 10px !important;
+			box-shadow: none !important;
+		}
+
+		.f1 {
+			margin-bottom: 20px !important;
+		}
+	}
+
+	@media (max-width: 600px) {
+		.nav {
+			flex-direction: column;
+			gap: 15px;
+			align-items: center;
+			padding: 15px;
+		}
+
+		.nav a {
+			font-size: 17px;
+		}
+
+		.contact-header h1,
+		.hero-title {
+			font-size: 32px !important;
+		}
+
+		.contact-header p,
+		.hero-subtitle {
+			font-size: 16px !important;
+		}
+
+		.pre-footer-banner-container {
+			height: 200px;
+		}
+
+		.pre-footer-overlay h2 {
+			font-size: 22px !important;
+		}
+
+		.pre-footer-overlay p {
+			font-size: 14px !important;
+		}
+
+		.values-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+        footer{
+            display:flex;
+            flex-direction: row;
+            color: #b3a08a;
+            border-radius: 10px;
+            margin:10px;
+            margin-top: 100px;
+            box-shadow: 2px 1px 5px 1px #b3a08a;
+            font-family:'Georgia', serif;
+        }
+        footer p{
+            color: #b3a08a;
+        }
+        .f3 a{
+            text-decoration: none;
+            color: #b3a08a;
+        }
+        .f1{
+            margin-left:10px;
+            padding: 10px;
+            padding-top: 30px;
+            margin-bottom:200px;
+        }
+        .f2{
+            margin-left:100px;
+            box-shadow: 0px 1px 5px 1px #b3a08a;
+            padding: 10px;
+            width:500px;
+        }
+        .f3{
+            box-shadow: 0px 1px 5px 1px #b3a08a;
+            padding: 10px;
+            width:400px;
+            padding-left: 30px;
+        }
+        .f4{
+            box-shadow: 0px 1px 5px 1px #b3a08a;
+            width:370px;
+            padding-top:30px;
+            padding-left: 30px;
+        }
+        .f4 a{
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 40px;
+            color: #d6794d;
+        }
+    </style>
+</head>
+<body>
+
+    <navbar class="nav">
+        <p class="h1">Hearth</p>
+        <a href="res.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="menu.html">Menu</a>
+        <a href="contact.html">Contact Us</a>
+    </navbar>
+    
+    <div style="text-align: center; margin: 40px auto; padding: 25px; border: 2px solid #C8906D; border-radius: 15px; max-width: 650px; background-color: black; box-shadow: 0px 4px 15px rgba(200, 144, 109, 0.3);">
+        <p style="background-color: black; color: #c8906d; font-family: 'Tahoma', sans-serif; font-size: 28px; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px;">Chef's Special</p>
+        
+        <div id="special-container" style="background-color: black;">
+            <img id="special-img" src="./m1.jpg" alt="Chef Special Dish" style="width: 100%; max-height: 320px; object-fit: cover; border-radius: 12px; border: 2px solid #C8906D; margin-bottom: 15px; background-color: black;">
+            <p id="special-title" style="background-color: black; color: #ebefee; font-size: 26px; font-weight: bold; font-family: 'Verdana', sans-serif; margin: 10px 0;"></p>
+            <p id="special-desc" style="background-color: black; color: #ccb499; font-size: 18px; font-style: italic; font-family: 'Garamond', serif; margin-bottom: 10px;"></p>
+            <p id="special-price" style="background-color: black; color: #C8906D; font-family: 'Tahoma', sans-serif; font-size: 22px; font-weight: bold;"></p>
+        </div>
+    </div>
+    <p style="color:#bb6c43; font-size:45px; font-weight: bold; text-align: center; margin-top: 30px; font-family: 'Tahoma', sans-serif;">Our Menu</p>
+    <div class="category-container">
+        <div class="category-box active" onclick="showCategory('starters', this)">Starters</div>
+        <div class="category-box" onclick="showCategory('main-dishes', this)">Main Dishes</div>
+        <div class="category-box" onclick="showCategory('desserts', this)">Desserts</div>
+        <div class="category-box" onclick="showCategory('beverages', this)">Beverages</div>
+    </div>
+
+    <div id="starters" class="category-content active-content">
+        <div class="dish-card">
+            <img src="./m1.jpg" alt="Pumpkin Cutlets">
+            <div class="dish-details">
+                <div class="dish-header">
+                    <span class="dish-title">Pumpkin Cutlets</span>
+                    <span class="dish-price">₹350</span>
+                </div>
+                <p class="dish-desc">Golden, crispy pumpkin patties served with fresh greens, cherry tomatoes, and a tangy herb dip.</p>
+            </div>
+        </div>
+
+        <div class="dish-card">
+            <img src="./m3.jpg" alt="Crispy Garlic Bruschetta">
+            <div class="dish-details">
+                <div class="dish-header">
+                    <span class="dish-title">Crispy Garlic Bruschetta</span>
+                    <span class="dish-price">₹290</span>
+                </div>
+                <p class="dish-desc">Toasted artisan bread rubbed with garlic, topped with diced heirloom tomatoes, basil, and olive oil.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="main-dishes" class="category-content">
+        <div class="dish-card">
+            <img src="./bs1.jpg" alt="Classic Margherita Pizza">
+            <div class="dish-details">
+                <div class="dish-header">
+                    <span class="dish-title">Classic Margherita Pizza</span>
+                    <span class="dish-price">₹480</span>
+                </div>
+                <p class="dish-desc">A thin, golden crust topped with rich tomato sauce, melted mozzarella, and fragrant fresh basil.</p>
+            </div>
+        </div>
+
+        <div class="dish-card">
+            <img src="./bs2.jpg" alt="Creamy Alfredo Pasta">
+            <div class="dish-details">
+                <div class="dish-header">
+                    <span class="dish-title">Creamy Alfredo Pasta</span>
+                    <span class="dish-price">₹520</span>
+                </div>
+                <p class="dish-desc">Silky Alfredo sauce coats tender pasta, finished with Parmesan cheese, cracked pepper, and fresh herbs.</p>
+            </div>
+        </div>
+
+        <div class="dish-card">
+            <img src="./m2.jpg" alt="Herb-Grilled Chicken">
+            <div class="dish-details">
+                <div class="dish-header">
+                    <span class="dish-title">Herb-Grilled Chicken</span>
+                    <span class="dish-price">₹650</span>
+                </div>
+                <p class="dish-desc">Juicy grilled chicken seasoned with aromatic herbs, paired with roasted vegetables and creamy mashed potatoes.</p>
+            </div>
+        </div>
+
+        <div class="dish-card">
+            <img src="./bs3.jpg" alt="Classic Veggie Burger">
+            <div class="dish-details">
+                <div class="dish-header">
+                    <span class="dish-title">Classic Veggie Burger</span>
+                    <span class="dish-price">₹380</span>
+                </div>
+                <p class="dish-desc">A crispy vegetable patty layered with lettuce, tomato, cheese, and our signature sauce in a toasted bun.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="desserts" class="category-content">
+        <div class="dish-card">
+            <img src="./m4.jpg" alt="Chocolate Lava Cake">
+            <div class="dish-details">
+                <div class="dish-header">
+                    <span class="dish-title">Chocolate Lava Cake</span>
+                    <span class="dish-price">₹320</span>
+                </div>
+                <p class="dish-desc">A warm chocolate cake with a molten center, served with vanilla ice cream and a delicate chocolate drizzle.</p>
+            </div>
+        </div>
+
+        <div class="dish-card">
+            <img src="./tres.jxl" alt="Classic Tres Leches">
+            <div class="dish-details">
+                <div class="dish-header">
+                    <span class="dish-title">Classic Tres Leches</span>
+                    <span class="dish-price">₹340</span>
+                </div>
+                <p class="dish-desc">Light sponge cake soaked in three sweet milks, topped with whipped cream and a hint of cinnamon.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="beverages" class="category-content">
+        <div class="dish-card">
+            <img src="./m5.jpg" alt="Iced Caramel Latte">
+            <div class="dish-details">
+                <div class="dish-header">
+                    <span class="dish-title">Iced Caramel Latte</span>
+                    <span class="dish-price">₹240</span>
+                </div>
+                <p class="dish-desc">Smooth espresso blended with chilled milk and sweet caramel, served over ice.</p>
+            </div>
+        </div>
+
+        <div class="dish-card">
+            <img src="./m6.jpg" alt="Strawberry Mojito">
+            <div class="dish-details">
+                <div class="dish-header">
+                    <span class="dish-title">Strawberry Mojito</span>
+                    <span class="dish-price">₹260</span>
+                </div>
+                <p class="dish-desc">A refreshing blend of juicy strawberries, fresh mint, zesty lime, and sparkling soda over crushed ice.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showCategory(categoryId, element) {
+            const boxes = document.querySelectorAll('.category-box');
+            boxes.forEach(box => box.classList.remove('active'));
+
+            const contents = document.querySelectorAll('.category-content');
+            contents.forEach(content => content.classList.remove('active-content'));
+
+            element.classList.add('active');
+            document.getElementById(categoryId).classList.add('active-content');
+        }
+
+        const dailySpecials = {
+            0: { name: "Saffron Lobster Risotto", desc: "Arborio rice simmered in a rich lobster broth infused with Spanish saffron and fresh herbs.", price: "₹890", img: "./s1.jpg" },
+            1: { name: "Truffle Wild Mushroom Soup", desc: "Velvety roasted wild mushroom soup finished with a drizzle of white truffle oil and garlic croutons.", price: "₹420", img: "./s2.jpg" },
+            2: { name: "Wood-Fired Rosemary Lamb Chops", desc: "Tender lamb cutlets marinated in rosemary and garlic, seared to perfection with red wine jus.", price: "₹950", img: "./s3.jpg" },
+            3: { name: "Honey-Glazed Duck Breast", desc: "Pan-roasted duck breast served with a spiced orange reduction and roasted baby potatoes.", price: "₹820", img: "./s4.jpg" },
+            4: { name: "Pan-Seared Chilean Sea Bass", desc: "Delicate sea bass filet served over a bed of lemon-butter asparagus and wild rice.", price: "₹990", img: "./s5.jpg" },
+            5: { name: "Artisanal Fig & Prosciutto Flatbread", desc: "Crispy flatbread topped with black mission figs, aged prosciutto, gorgonzola, and a honey drizzle.", price: "₹560", img: "./s6.jpg" },
+            6: { name: "Chef's Signature Wagyu Beef Burger", desc: "Premium Wagyu beef patty with smoked cheddar, caramelized onions, and truffle aioli in a brioche bun.", price: "₹750", img: "./s7.jpg" }
+        };
+
+        const today = new Date().getDay();
+        const todaysSpecial = dailySpecials[today];
+
+        document.getElementById("special-title").innerText = todaysSpecial.name;
+        document.getElementById("special-desc").innerText = todaysSpecial.desc;
+        document.getElementById("special-price").innerText = todaysSpecial.price;
+        document.getElementById("special-img").src = todaysSpecial.img;
+    </script>
+
+    <footer>
+        <div class="f1">
+            <a href="res.html" src="Hearth" id="h3"></a>
+            <p>Loved your meal? Leave us a review and tag us in your food photos!</p>
+            <p>An exceptional dining experience is our passion. Thank you for choosing us tonight.</p>
+        </div>
+        <div class="f2">
+            <p style="font-weight: bold;font-size: 20px; text-decoration: underline;">Support</p>
+            <p class="con">Contact us: 123-456-7890</p>
+            <p class="em">Email: info@hearthrestaurant.com</p>
+            <p class="add">Hearth Restaurant<br>24 Maplewood Avenue,  <br>Indiranagar, Bengaluru, Karnataka – 560038, India.</p>
+        </div>
+        <div class="f3">
+            <p style="font-weight: bold;font-size: 20px;text-decoration: underline;">Helpful Links</p>
+            <a href="res.html">Home</a>
+            <br>
+            <br>
+            <a href="about.html">About Us</a>
+            <br>
+            <br>
+            <a href="menu.html">Menu</a>
+            <br>
+            <br>
+            <a href="contact.html">Contact Us</a>
+        </div>
+        <div class="f4">
+            <a href="res.html">Hearth</a>
+            <br>
+            <p>Where casual dining meets authentic flavor.</p>
+        </div>
+    </footer>
+</body>
+</html>
